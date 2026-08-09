@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pasitc-ai-agents-skills | Interactive AI Agent Portal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        },
+                        orchestrator: {
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        },
+                        human: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b0f19;
+            color: #f1f5f9;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-panel-hover:hover {
+            border-color: rgba(14, 165, 233, 0.3);
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.15);
+            transform: translateY(-2px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+        }
+        .bg-glow {
+            filter: blur(100px);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Decorative Glow Backdrops -->
+    <div class="absolute top-20 left-10 w-96 h-96 bg-cyber-500 rounded-full bg-glow"></div>
+    <div class="absolute top-1/3 right-10 w-96 h-96 bg-purple-500 rounded-full bg-glow"></div>
+    <div class="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-emerald-500 rounded-full bg-glow"></div>
+
+    <!-- Navigation Header -->
+    <nav class="sticky top-0 z-50 glass-panel border-b border-white/5 py-4 px-6 md:px-12 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-cyber-500 to-purple-600 flex items-center justify-center shadow-lg shadow-cyber-500/20">
+                <i class="fa-solid fa-robot text-lg text-white"></i>
+            </div>
+            <div>
+                <span class="font-bold text-lg bg-gradient-to-r from-white via-slate-200 to-cyber-400 bg-clip-text text-transparent">pasitc-ai-agents</span>
+                <span class="text-xs block text-cyber-400 font-semibold uppercase tracking-wider">Multi-Agent & Skills Suite</span>
+            </div>
+        </div>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+            <a href="#about" class="hover:text-cyber-400 transition-colors">Overview</a>
+            <a href="#workflow" class="hover:text-cyber-400 transition-colors">SDLC Workflow</a>
+            <a href="#install" class="hover:text-cyber-400 transition-colors">Install Guide</a>
+            <a href="#skills" class="hover:text-cyber-400 transition-colors">64+ Skills</a>
+            <a href="#structure" class="hover:text-cyber-400 transition-colors">Repo Map</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="https://github.com" target="_blank" class="glass-panel px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 hover:bg-white/5 transition-colors border-white/10">
+                <i class="fa-brands fa-github text-base"></i>
+                <span>GitHub Repo</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-20 pb-16 px-6 md:px-12 text-center max-w-6xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyber-500/10 border border-cyber-500/30 text-cyber-400 text-xs font-semibold mb-6 animate-pulse">
+            <i class="fa-solid fa-bolt"></i>
+            <span>Verified compatibility for 2026 AI CLI Systems</span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent leading-tight">
+            Supercharge Your AI Coding Companions with <span class="bg-gradient-to-r from-cyber-400 to-purple-500 bg-clip-text text-transparent">64+ Curated Skills</span>
+        </h1>
+        <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-10 font-normal leading-relaxed">
+            A comprehensive, battle-tested framework for Claude Code, Codex, Gemini CLI, and Kiro CLI. Features multi-agent orchestration, local vendor bundles, and the canonical 10-phase AIDLC-lite SDLC workflow.
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-4 mb-16">
+            <a href="#install" class="px-8 py-4 rounded-xl bg-gradient-to-r from-cyber-500 to-cyber-600 font-semibold shadow-lg shadow-cyber-500/25 hover:opacity-95 transform hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                <i class="fa-solid fa-download"></i>
+                <span>Get Started Now</span>
+            </a>
+            <a href="#workflow" class="px-8 py-4 rounded-xl glass-panel font-semibold border-white/10 hover:bg-white/5 transform hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                <i class="fa-solid fa-diagram-project"></i>
+                <span>Explore Workflow</span>
+            </a>
+        </div>
+
+        <!-- Counter Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            <div class="glass-panel p-6 rounded-2xl border-white/5 text-center">
+                <div class="text-3xl md:text-4xl font-extrabold text-cyber-400 mb-1">64+</div>
+                <div class="text-xs uppercase tracking-wider text-slate-500 font-bold">Curated Skills</div>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl border-white/5 text-center">
+                <div class="text-3xl md:text-4xl font-extrabold text-purple-400 mb-1">10</div>
+                <div class="text-xs uppercase tracking-wider text-slate-500 font-bold">Specialist Agents</div>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl border-white/5 text-center">
+                <div class="text-3xl md:text-4xl font-extrabold text-emerald-400 mb-1">4</div>
+                <div class="text-xs uppercase tracking-wider text-slate-500 font-bold">Supported CLIs</div>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl border-white/5 text-center">
+                <div class="text-3xl md:text-4xl font-extrabold text-amber-400 mb-1">10-Phase</div>
+                <div class="text-xs uppercase tracking-wider text-slate-500 font-bold">SDLC Workflow</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="about" class="py-20 px-6 md:px-12 max-w-6xl mx-auto border-t border-white/5">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">Key Capabilities</h2>
+            <p class="text-slate-400 mt-3 max-w-xl mx-auto">What makes this repository the ultimate skill hub for developers working with AI CLI agents.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Cap 1 -->
+            <div class="glass-panel glass-panel-hover p-6 rounded-2xl border-white/5 flex flex-col justify-between">
+                <div>
+                    <div class="h-12 w-12 rounded-xl bg-cyber-500/10 border border-cyber-500/20 flex items-center justify-center text-cyber-400 mb-6">
+                        <i class="fa-solid fa-puzzle-piece text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">64 Consolidated Skills</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Curated from top open-source projects including 9arm, Matt Pocock, Andrej Karpathy guidelines, Loop Engineering, and Obra Superpowers.
+                    </p>
+                </div>
+                <span class="text-xs text-cyber-400 font-semibold mt-4 block">5 Elite Collections</span>
+            </div>
+            <!-- Cap 2 -->
+            <div class="glass-panel glass-panel-hover p-6 rounded-2xl border-white/5 flex flex-col justify-between">
+                <div>
+                    <div class="h-12 w-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-6">
+                        <i class="fa-solid fa-network-wired text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Orchestration & Agents</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Features our flagship <code class="text-purple-300">aidlc-lead</code> orchestrator and <code class="text-purple-300">team-leader</code> (read-only model) along with 8 specialized sub-agents.
+                    </p>
+                </div>
+                <span class="text-xs text-purple-400 font-semibold mt-4 block">10 Multi-Agent Rosters</span>
+            </div>
+            <!-- Cap 3 -->
+            <div class="glass-panel glass-panel-hover p-6 rounded-2xl border-white/5 flex flex-col justify-between">
+                <div>
+                    <div class="h-12 w-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6">
+                        <i class="fa-solid fa-arrows-spin text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Canonical SDLC</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        The structured, 10-phase AIDLC-lite workflow manages everything from context gathering, design approvals, TDD to build verification and release gates.
+                    </p>
+                </div>
+                <span class="text-xs text-emerald-400 font-semibold mt-4 block">Adaptive Scope Routing</span>
+            </div>
+            <!-- Cap 4 -->
+            <div class="glass-panel glass-panel-hover p-6 rounded-2xl border-white/5 flex flex-col justify-between">
+                <div>
+                    <div class="h-12 w-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-6">
+                        <i class="fa-solid fa-box-archive text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Local Vendor Bundles</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Includes full standalone vendor packages (Superpowers, Ponytail, Obsidian Second Brain) ensuring offline capability and zero github download dependency.
+                    </p>
+                </div>
+                <span class="text-xs text-amber-400 font-semibold mt-4 block">No GitHub Downloads Needed</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Diagram Section -->
+    <section id="workflow" class="py-20 px-6 md:px-12 max-w-6xl mx-auto border-t border-white/5">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">AIDLC-lite Workflow & Architecture</h2>
+            <p class="text-slate-400 mt-3 max-w-xl mx-auto">Explore how aidlc-lead orchestrates specialist sub-agents and enforces rigorous human approval gates.</p>
+        </div>
+
+        <!-- Beautiful custom SVG Diagram -->
+        <div class="glass-panel p-6 rounded-3xl border-white/5 mb-12 overflow-x-auto shadow-2xl shadow-black/50">
+            <div class="min-w-[950px] mx-auto py-4">
+                <svg viewBox="0 0 1150 650" class="w-full h-auto select-none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Gradients -->
+                        <linearGradient id="g-lead" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#059669" />
+                            <stop offset="100%" stop-color="#10b981" />
+                        </linearGradient>
+                        <linearGradient id="g-agent" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#1d4ed8" />
+                            <stop offset="100%" stop-color="#0ea5e9" />
+                        </linearGradient>
+                        <linearGradient id="g-human" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#d97706" />
+                            <stop offset="100%" stop-color="#f59e0b" />
+                        </linearGradient>
+                        <linearGradient id="g-phase" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#6d28d9" />
+                            <stop offset="100%" stop-color="#a855f7" />
+                        </linearGradient>
+                        <linearGradient id="g-col" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="rgba(255,255,255,0.02)" />
+                            <stop offset="100%" stop-color="rgba(255,255,255,0.0)" />
+                        </linearGradient>
+
+                        <!-- Neon Glow Filters -->
+                        <filter id="f-glow" x="-10%" y="-10%" width="120%" height="120%">
+                            <feGaussianBlur stdDeviation="4" result="blur" />
+                            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                        </filter>
+
+                        <!-- Arrow Markers -->
+                        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M0,1 L10,5 L0,9 z" fill="#64748b" />
+                        </marker>
+                        <marker id="arrow-glow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M0,1 L10,5 L0,9 z" fill="#0ea5e9" />
+                        </marker>
+                        <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M0,1 L10,5 L0,9 z" fill="#10b981" />
+                        </marker>
+                    </defs>
+
+                    <!-- Grid background -->
+                    <rect width="100%" height="100%" fill="#070a13" rx="16" />
+                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255, 255, 255, 0.015)" stroke-width="1" />
+                    </pattern>
+                    <rect width="100%" height="100%" rx="16" fill="url(#grid)" />
+
+                    <!-- 4 Core Columns Boundaries -->
+                    <g font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="rgba(255,255,255,0.15)">
+                        <!-- Col 1: Analyze & Design -->
+                        <rect x="15" y="15" width="280" height="620" rx="12" fill="url(#g-col)" stroke="rgba(255,255,255,0.05)" />
+                        <text x="155" y="40" text-anchor="middle" letter-spacing="1">1. ANALYZE &amp; DESIGN</text>
+
+                        <!-- Col 2: Plan & Validate -->
+                        <rect x="310" y="15" width="250" height="620" rx="12" fill="url(#g-col)" stroke="rgba(255,255,255,0.05)" />
+                        <text x="435" y="40" text-anchor="middle" letter-spacing="1">2. PLAN &amp; VALIDATE</text>
+
+                        <!-- Col 3: Execute & Audit -->
+                        <rect x="575" y="15" width="310" height="620" rx="12" fill="url(#g-col)" stroke="rgba(255,255,255,0.05)" />
+                        <text x="730" y="40" text-anchor="middle" letter-spacing="1">3. EXECUTE &amp; AUDIT</text>
+
+                        <!-- Col 4: Deliver & Operate -->
+                        <rect x="900" y="15" width="235" height="620" rx="12" fill="url(#g-col)" stroke="rgba(255,255,255,0.05)" />
+                        <text x="1017" y="40" text-anchor="middle" letter-spacing="1">4. DELIVER &amp; OPERATE</text>
+                    </g>
+
+                    <!-- Legend -->
+                    <g transform="translate(30, 595)" font-size="10" font-weight="bold" font-family="system-ui, sans-serif">
+                        <rect x="0" y="0" width="100" height="22" rx="4" fill="url(#g-lead)" />
+                        <text x="50" y="14" fill="white" text-anchor="middle">Orchestrator</text>
+
+                        <rect x="110" y="0" width="100" height="22" rx="4" fill="url(#g-agent)" />
+                        <text x="160" y="14" fill="white" text-anchor="middle">Specialist Agent</text>
+
+                        <rect x="220" y="0" width="100" height="22" rx="4" fill="url(#g-human)" />
+                        <text x="270" y="14" fill="white" text-anchor="middle">Human Gate</text>
+
+                        <rect x="330" y="0" width="100" height="22" rx="4" fill="url(#g-phase)" />
+                        <text x="380" y="14" fill="white" text-anchor="middle">SDLC Phase</text>
+                    </g>
+
+                    <!-- Connector Paths (Curved Bezier Lines) -->
+                    <!-- Start to Orchestrator -->
+                    <path d="M 155,105 L 155,140" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrow-glow)" />
+                    <!-- Orchestrator to Phase 0 -->
+                    <path d="M 155,210 L 155,250" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow-green)" />
+                    <!-- Phase 0 to Phase 1 -->
+                    <path d="M 155,300 L 155,340" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)" />
+                    <!-- Phase 1 to researcher (Bidirectional) -->
+                    <path d="M 155,390 C 155,420 155,440 155,460" stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="3,3" />
+                    <path d="M 155,460 C 155,440 155,420 155,390" stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-glow)" />
+                    
+                    <!-- Phase 1 to Phase 2/3 (Column crossing) -->
+                    <path d="M 225,365 C 265,365 240,115 285,115 L 340,115" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)" />
+                    <!-- Phase 2/3 to Gate A -->
+                    <path d="M 435,140 L 435,180" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)" />
+                    <!-- Gate A to Phase 4 -->
+                    <path d="M 435,230 L 435,270" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)" />
+                    <!-- Phase 4 to Gate 1 (plan-reviewer) -->
+                    <path d="M 435,320 L 435,360" stroke="#0ea5e9" stroke-width="1.5" marker-end="url(#arrow-glow)" />
+                    <!-- Revise loop (Gate 1 to Phase 4) -->
+                    <path d="M 495,385 C 525,385 525,295 495,295" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2,2" marker-end="url(#arrow)" />
+                    <text x="525" y="345" fill="#f59e0b" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" font-weight="bold">Revise Plan</text>
+                    <!-- Gate 1 to Gate B -->
+                    <path d="M 435,415 L 435,450" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)" />
+
+                    <!-- Gate B to Phase 5 (Column crossing) -->
+                    <path d="M 495,475 C 555,475 525,115 585,115 L 670,115" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)" />
+                    <!-- Phase 5 to Specialists (Bidirectional) -->
+                    <path d="M 790,115 L 820,115" stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-glow)" />
+                    <path d="M 820,130 L 790,130" stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-glow)" />
+                    <!-- Phase 5 to Gate 2 (security-auditor) -->
+                    <path d="M 730,140 L 730,180" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)" />
+                    <!-- Gate 2 to Phase 6 -->
+                    <path d="M 730,230 L 730,270" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)" />
+                    <!-- Phase 6 to Phase 7 -->
+                    <path d="M 730,320 L 730,360" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)" />
+                    <!-- Phase 7 to Gate 3 / Gate 4 (Bidirectional) -->
+                    <path d="M 790,385 L 820,385" stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-glow)" />
+                    <path d="M 790,405 L 820,465" stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-glow)" />
+
+                    <!-- Phase 7 to Phase 8 (Column crossing) -->
+                    <path d="M 730,410 C 730,440 730,470 700,500 L 700,530 C 700,560 880,560 920,475 C 930,450 930,125 960,115 L 980,115" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)" />
+                    <!-- Phase 8 to Gate C -->
+                    <path d="M 1035,140 L 1035,180" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)" />
+                    <!-- Gate C to Phase 9 -->
+                    <path d="M 1035,230 L 1035,270" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+
+                    <!-- NODES -->
+                    <!-- Column 1: Analyze & Design -->
+                    <g transform="translate(100, 65)">
+                        <rect x="0" y="0" width="110" height="40" rx="8" fill="#1e293b" stroke="#0ea5e9" stroke-width="2" />
+                        <text x="55" y="24" fill="white" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">/aidlc task</text>
+                    </g>
+
+                    <g transform="translate(100, 140)">
+                        <rect x="0" y="0" width="110" height="70" rx="12" fill="url(#g-lead)" stroke="#34d399" stroke-width="2.5" filter="url(#f-glow)" />
+                        <text x="55" y="32" fill="white" font-family="system-ui, sans-serif" font-size="13" font-weight="extrabold" text-anchor="middle">aidlc-lead</text>
+                        <text x="55" y="50" fill="#a7f3d0" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Orchestrator</text>
+                    </g>
+
+                    <g transform="translate(85, 250)">
+                        <rect x="0" y="0" width="140" height="50" rx="10" fill="url(#g-phase)" stroke="#c084fc" stroke-width="1" />
+                        <text x="70" y="24" fill="white" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Phase 0</text>
+                        <text x="70" y="40" fill="#e9d5ff" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">Classify Scope</text>
+                    </g>
+
+                    <g transform="translate(85, 340)">
+                        <rect x="0" y="0" width="140" height="50" rx="10" fill="url(#g-phase)" stroke="#c084fc" stroke-width="1" />
+                        <text x="70" y="24" fill="white" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Phase 1</text>
+                        <text x="70" y="40" fill="#e9d5ff" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">Establish Context</text>
+                    </g>
+
+                    <g transform="translate(100, 460)">
+                        <rect x="0" y="0" width="110" height="40" rx="8" fill="url(#g-agent)" stroke="#38bdf8" stroke-width="1" />
+                        <text x="55" y="24" fill="white" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">researcher</text>
+                    </g>
+
+                    <!-- Column 2: Plan & Validate -->
+                    <g transform="translate(340, 90)">
+                        <rect x="0" y="0" width="190" height="50" rx="10" fill="url(#g-phase)" stroke="#c084fc" stroke-width="1" />
+                        <text x="95" y="24" fill="white" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Phase 2 &amp; 3</text>
+                        <text x="95" y="40" fill="#e9d5ff" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">Requirements &amp; Design</text>
+                    </g>
+
+                    <g transform="translate(380, 180)">
+                        <rect x="0" y="0" width="110" height="50" rx="10" fill="url(#g-human)" stroke="#fbbf24" stroke-width="1.5" />
+                        <text x="55" y="24" fill="white" font-family="system-ui, sans-serif" font-size="12" font-weight="extrabold" text-anchor="middle">Gate A</text>
+                        <text x="55" y="40" fill="#fde68a" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">Approve Design</text>
+                    </g>
+
+                    <g transform="translate(365, 270)">
+                        <rect x="0" y="0" width="140" height="50" rx="10" fill="url(#g-phase)" stroke="#c084fc" stroke-width="1" />
+                        <text x="70" y="24" fill="white" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Phase 4</text>
+                        <text x="70" y="40" fill="#e9d5ff" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">Plan &amp; Traceability</text>
+                    </g>
+
+                    <g transform="translate(380, 360)">
+                        <rect x="0" y="0" width="110" height="55" rx="10" fill="url(#g-agent)" stroke="#38bdf8" stroke-width="1.5" filter="url(#f-glow)" />
+                        <text x="55" y="24" fill="white" font-family="system-ui, sans-serif" font-size="11" font-weight="extrabold" text-anchor="middle">plan-reviewer</text>
+                        <text x="55" y="40" fill="#bae6fd" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">Gate 1 Approve</text>
+                    </g>
+
+                    <g transform="translate(380, 450)">
+                        <rect x="0" y="0" width="110" height="50" rx="10" fill="url(#g-human)" stroke="#fbbf24" stroke-width="1.5" />
+                        <text x="55" y="24" fill="white" font-family="system-ui, sans-serif" font-size="12" font-weight="extrabold" text-anchor="middle">Gate B</text>
+                        <text x="55" y="40" fill="#fde68a" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">Approve Plan</text>
+                    </g>
+
+                    <!-- Column 3: Execute & Audit -->
+                    <g transform="translate(610, 90)">
+                        <rect x="0" y="0" width="180" height="50" rx="10" fill="url(#g-phase)" stroke="#c084fc" stroke-width="1" />
+                        <text x="90" y="24" fill="white" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Phase 5</text>
+                        <text x="90" y="40" fill="#e9d5ff" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">Implement (TDD)</text>
+                    </g>
+
+                    <!-- Execution Specialist Team -->
+                    <g transform="translate(820, 85)">
+                        <rect x="0" y="0" width="50" height="50" rx="8" fill="rgba(14,165,233,0.1)" stroke="#38bdf8" stroke-width="1" />
+                        <text x="25" y="28" fill="#bae6fd" font-family="monospace" font-size="15" font-weight="bold" text-anchor="middle">ENG</text>
+                        <!-- Custom label pointing to team roster -->
+                        <text x="25" y="42" fill="white" font-family="system-ui, sans-serif" font-size="8" font-weight="bold" text-anchor="middle">Specialists</text>
+                    </g>
+
+                    <g transform="translate(645, 180)">
+                        <rect x="0" y="0" width="110" height="50" rx="10" fill="url(#g-agent)" stroke="#38bdf8" stroke-width="1" />
+                        <text x="55" y="24" fill="white" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">security-auditor</text>
+                        <text x="55" y="38" fill="#bae6fd" font-family="system-ui, sans-serif" font-size="9" text-anchor="middle">Gate 2 Security</text>
+                    </g>
+
+                    <g transform="translate(630, 270)">
+                        <rect x="0" y="0" width="140" height="50" rx="10" fill="url(#g-phase)" stroke="#c084fc" stroke-width="1" />
+                        <text x="70" y="24" fill="white" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Phase 6</text>
+                        <text x="70" y="40" fill="#e9d5ff" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">Review Code</text>
+                    </g>
+
+                    <g transform="translate(630, 360)">
+                        <rect x="0" y="0" width="140" height="50" rx="10" fill="url(#g-phase)" stroke="#c084fc" stroke-width="1" />
+                        <text x="70" y="24" fill="white" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Phase 7</text>
+                        <text x="70" y="40" fill="#e9d5ff" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">Build &amp; Verify</text>
+                    </g>
+
+                    <!-- Gate 3 and Gate 4 sub-agents -->
+                    <g transform="translate(820, 360)">
+                        <rect x="0" y="0" width="55" height="40" rx="6" fill="url(#g-agent)" stroke="#38bdf8" stroke-width="1" />
+                        <text x="27.5" y="22" fill="white" font-family="system-ui, sans-serif" font-size="8" font-weight="bold" text-anchor="middle">devsecops</text>
+                        <text x="27.5" y="32" fill="#bae6fd" font-family="system-ui, sans-serif" font-size="7" text-anchor="middle">Gate 3</text>
+                    </g>
+
+                    <g transform="translate(820, 440)">
+                        <rect x="0" y="0" width="55" height="40" rx="6" fill="url(#g-agent)" stroke="#38bdf8" stroke-width="1" />
+                        <text x="27.5" y="22" fill="white" font-family="system-ui, sans-serif" font-size="8" font-weight="bold" text-anchor="middle">test-auditor</text>
+                        <text x="27.5" y="32" fill="#bae6fd" font-family="system-ui, sans-serif" font-size="7" text-anchor="middle">Gate 4</text>
+                    </g>
+
+                    <!-- Column 4: Deliver & Operate -->
+                    <g transform="translate(930, 90)">
+                        <rect x="0" y="0" width="140" height="50" rx="10" fill="url(#g-phase)" stroke="#c084fc" stroke-width="1" />
+                        <text x="70" y="24" fill="white" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Phase 8</text>
+                        <text x="70" y="40" fill="#e9d5ff" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">Release Readiness</text>
+                    </g>
+
+                    <g transform="translate(945, 180)">
+                        <rect x="0" y="0" width="110" height="50" rx="10" fill="url(#g-human)" stroke="#fbbf24" stroke-width="1.5" />
+                        <text x="55" y="24" fill="white" font-family="system-ui, sans-serif" font-size="12" font-weight="extrabold" text-anchor="middle">Gate C</text>
+                        <text x="55" y="40" fill="#fde68a" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">Prod Approval</text>
+                    </g>
+
+                    <g transform="translate(935, 270)">
+                        <rect x="0" y="0" width="130" height="50" rx="10" fill="url(#g-lead)" stroke="#34d399" stroke-width="1.5" />
+                        <text x="65" y="24" fill="white" font-family="system-ui, sans-serif" font-size="12" font-weight="extrabold" text-anchor="middle">Phase 9</text>
+                        <text x="65" y="40" fill="#a7f3d0" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">Ops &amp; Handoff</text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <!-- 10-Phase Detailed Accordion Grid -->
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-4">
+                <div class="glass-panel p-5 rounded-2xl border-white/5">
+                    <span class="text-xs uppercase tracking-wider text-purple-400 font-bold">Phase 0</span>
+                    <h4 class="text-lg font-bold text-white mt-1 mb-2">Classify, Route & Select Scope</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Route tasks into <code class="text-cyber-300 font-semibold">new</code>, <code class="text-cyber-300 font-semibold">feature</code>, <code class="text-cyber-300 font-semibold">bugfix</code>, <code class="text-cyber-300 font-semibold">refactor</code>, or <code class="text-cyber-300 font-semibold">investigation</code> scopes. Heavy routing decides whether to decompose complex multi-domain structures.
+                    </p>
+                </div>
+                <div class="glass-panel p-5 rounded-2xl border-white/5">
+                    <span class="text-xs uppercase tracking-wider text-purple-400 font-bold">Phase 1</span>
+                    <h4 class="text-lg font-bold text-white mt-1 mb-2">Establish Repository Truth</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Deep dive into codebase, existing APIs, tests, and configuration. The <code class="text-cyan-300">researcher</code> agent explores codebase references thoroughly to back decisions with solid evidence.
+                    </p>
+                </div>
+                <div class="glass-panel p-5 rounded-2xl border-white/5">
+                    <span class="text-xs uppercase tracking-wider text-purple-400 font-bold">Phase 2 & 3</span>
+                    <h4 class="text-lg font-bold text-white mt-1 mb-2">Requirements & Technical Design</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Formalize constraints and architectural specifications. Human interaction triggers <code class="text-amber-300 font-bold">Gate A</code> for technical design sign-off.
+                    </p>
+                </div>
+                <div class="glass-panel p-5 rounded-2xl border-white/5">
+                    <span class="text-xs uppercase tracking-wider text-purple-400 font-bold">Phase 4</span>
+                    <h4 class="text-lg font-bold text-white mt-1 mb-2">Implementation Plan & Review</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Write sequential task items. The specialized <code class="text-cyan-300">plan-reviewer</code> acts as <code class="text-amber-400 font-bold">Gate 1</code>, enforcing corrections. Human reviews the plan at <code class="text-amber-300 font-bold">Gate B</code>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="glass-panel p-5 rounded-2xl border-white/5">
+                    <span class="text-xs uppercase tracking-wider text-purple-400 font-bold">Phase 5</span>
+                    <h4 class="text-lg font-bold text-white mt-1 mb-2">Execution & TDD Implementation</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Surgical, single-file edits verifying with Test-Driven Development. Tasks crossing authentication/secrets activate <code class="text-cyan-300">security-auditor</code> at <code class="text-amber-400 font-bold">Gate 2</code>.
+                    </p>
+                </div>
+                <div class="glass-panel p-5 rounded-2xl border-white/5">
+                    <span class="text-xs uppercase tracking-wider text-purple-400 font-bold">Phase 6 & 7</span>
+                    <h4 class="text-lg font-bold text-white mt-1 mb-2">Review, Build & Integrated Verification</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Verify tests, syntax, and static types. <code class="text-cyan-300">devsecops-engineer</code> scans for CVEs/leaked keys at <code class="text-amber-400 font-bold">Gate 3</code>, while <code class="text-cyan-300">test-quality-auditor</code> blocks fake tests at <code class="text-amber-400 font-bold">Gate 4</code>.
+                    </p>
+                </div>
+                <div class="glass-panel p-5 rounded-2xl border-white/5">
+                    <span class="text-xs uppercase tracking-wider text-purple-400 font-bold">Phase 8</span>
+                    <h4 class="text-lg font-bold text-white mt-1 mb-2">Release Readiness Analysis</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Prepare migrations, version updates, and rollbacks. Destructive or prod actions are checked and approved by Human in <code class="text-amber-300 font-bold">Gate C</code>.
+                    </p>
+                </div>
+                <div class="glass-panel p-5 rounded-2xl border-white/5">
+                    <span class="text-xs uppercase tracking-wider text-purple-400 font-bold">Phase 9</span>
+                    <h4 class="text-lg font-bold text-white mt-1 mb-2">Operations & Knowledge Handoff</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Write clean runbooks and update markdown index. Ensure comprehensive transparency and handover.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section with Tab selector -->
+    <section id="install" class="py-20 px-6 md:px-12 max-w-6xl mx-auto border-t border-white/5">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">Multi-AI Installation Guide</h2>
+            <p class="text-slate-400 mt-3 max-w-xl mx-auto">Toggle between tabs to see specific CLI setups, requirements, and commands verified on local environments.</p>
+        </div>
+
+        <!-- Terminal Tab Selector -->
+        <div class="glass-panel rounded-3xl border-white/5 overflow-hidden shadow-2xl">
+            <!-- Tabs header -->
+            <div class="flex border-b border-white/5 bg-slate-900/40 overflow-x-auto text-slate-400 font-semibold text-sm">
+                <button onclick="switchTab('kiro')" id="tab-kiro" class="flex-1 py-4 px-6 flex items-center justify-center gap-2 hover:bg-white/5 border-b-2 border-cyber-500 text-white transition-all min-w-[150px]">
+                    <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                    <span>Kiro CLI</span>
+                </button>
+                <button onclick="switchTab('claude')" id="tab-claude" class="flex-1 py-4 px-6 flex items-center justify-center gap-2 hover:bg-white/5 border-b-2 border-transparent transition-all min-w-[150px]">
+                    <span class="h-2 w-2 rounded-full bg-orange-400"></span>
+                    <span>Claude Code</span>
+                </button>
+                <button onclick="switchTab('codex')" id="tab-codex" class="flex-1 py-4 px-6 flex items-center justify-center gap-2 hover:bg-white/5 border-b-2 border-transparent transition-all min-w-[150px]">
+                    <span class="h-2 w-2 rounded-full bg-blue-400"></span>
+                    <span>Codex CLI</span>
+                </button>
+                <button onclick="switchTab('gemini')" id="tab-gemini" class="flex-1 py-4 px-6 flex items-center justify-center gap-2 hover:bg-white/5 border-b-2 border-transparent transition-all min-w-[150px]">
+                    <span class="h-2 w-2 rounded-full bg-violet-400"></span>
+                    <span>Gemini CLI</span>
+                </button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="p-6 md:p-10 space-y-8">
+                
+                <!-- KIRO TAB CONTENT -->
+                <div id="content-kiro" class="tab-content block space-y-6">
+                    <div class="grid md:grid-cols-2 gap-8 items-start">
+                        <div class="space-y-4">
+                            <h3 class="text-2xl font-bold text-white flex items-center gap-2">
+                                <span class="px-2 py-1 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs rounded font-bold uppercase tracking-wider">Verified 2.13.0</span>
+                                <span>Kiro CLI Integration</span>
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Kiro CLI fully supports the modern multi-agent standard with classic JSON rosters. Our automated installer places agents into your user directory and configures `aidlc-lead` as your default pilot.
+                            </p>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                                    <span>Rosters stored inside <code class="text-emerald-300 text-xs bg-emerald-950/40 px-1 py-0.5 rounded font-mono">~/.kiro/agents/</code></span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                                    <span>Steering logic loaded from <code class="text-emerald-300 text-xs bg-emerald-950/40 px-1 py-0.5 rounded font-mono">~/.kiro/steering/ai-team-global-rule.md</code></span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                                    <span>Karpathy guidelines (Always-On) merged into <code class="text-emerald-300 text-xs bg-emerald-950/40 px-1 py-0.5 rounded font-mono">~/.kiro/steering/ai-team-karpathy-guidelines.md</code></span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                                    <span>Skills mapped flat into <code class="text-emerald-300 text-xs bg-emerald-950/40 px-1 py-0.5 rounded font-mono">~/.kiro/skills/</code></span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Terminal simulation -->
+                        <div class="rounded-xl overflow-hidden bg-slate-950/80 border border-white/5 font-mono text-xs text-slate-300">
+                            <div class="bg-slate-900 px-4 py-2 flex items-center justify-between border-b border-white/5">
+                                <div class="flex gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                                </div>
+                                <span class="text-slate-500 font-semibold">kiro-install.sh</span>
+                            </div>
+                            <div class="p-4 space-y-2 overflow-x-auto">
+                                <p class="text-slate-500"># Run the central installer wrapper</p>
+                                <p class="text-emerald-400 font-semibold">./install/install-kiro.sh --set-default-agent</p>
+                                <p class="text-slate-400 mt-4"># Alternatively, run manually by copying artifacts:</p>
+                                <p class="text-slate-400">mkdir -p ~/.kiro/agents && cp agents/kiro-agents/*.json ~/.kiro/agents/</p>
+                                <p class="text-slate-400"># Set default agent inside ~/.kiro/settings/cli.json</p>
+                                <p class="text-slate-400">kiro-cli agent set-default aidlc-lead</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CLAUDE TAB CONTENT -->
+                <div id="content-claude" class="tab-content hidden space-y-6">
+                    <div class="grid md:grid-cols-2 gap-8 items-start">
+                        <div class="space-y-4">
+                            <h3 class="text-2xl font-bold text-white flex items-center gap-2">
+                                <span class="px-2 py-1 bg-orange-500/15 border border-orange-500/30 text-orange-400 text-xs rounded font-bold uppercase tracking-wider">Verified 2.1.216</span>
+                                <span>Claude Code Setup</span>
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Claude Code handles sub-agents using Markdown specifications. Use project-scope installation to lock your project settings or establish a system-wide roster.
+                            </p>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-orange-400"></i>
+                                    <span>System agents stored at <code class="text-orange-300 text-xs bg-orange-950/40 px-1 py-0.5 rounded font-mono">~/.claude/agents/</code></span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-orange-400"></i>
+                                    <span>Project-local agents at <code class="text-orange-300 text-xs bg-orange-950/40 px-1 py-0.5 rounded font-mono">&lt;project&gt;/.claude/agents/</code></span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-orange-400"></i>
+                                    <span>Enforced steering rule attached directly to <code class="text-orange-300 text-xs bg-orange-950/40 px-1 py-0.5 rounded font-mono">CLAUDE.md</code></span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-orange-400"></i>
+                                    <span>Karpathy guidelines (Always-On) merged into the same <code class="text-orange-300 text-xs bg-orange-950/40 px-1 py-0.5 rounded font-mono">CLAUDE.md</code></span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="rounded-xl overflow-hidden bg-slate-950/80 border border-white/5 font-mono text-xs text-slate-300">
+                            <div class="bg-slate-900 px-4 py-2 flex items-center justify-between border-b border-white/5">
+                                <div class="flex gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                                </div>
+                                <span class="text-slate-500 font-semibold">claude-install.sh</span>
+                            </div>
+                            <div class="p-4 space-y-2 overflow-x-auto">
+                                <p class="text-slate-500"># Install system-wide and configure project target</p>
+                                <p class="text-orange-400 font-semibold">./install/install-claude.sh --project ~/code/my-app --set-default-agent</p>
+                                <p class="text-slate-400 mt-4"># Set project default agent via config:</p>
+                                <p class="text-slate-400">echo '{"agent": "team-leader"}' &gt; ~/code/my-app/.claude/settings.json</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CODEX TAB CONTENT -->
+                <div id="content-codex" class="tab-content hidden space-y-6">
+                    <div class="grid md:grid-cols-2 gap-8 items-start">
+                        <div class="space-y-4">
+                            <h3 class="text-2xl font-bold text-white flex items-center gap-2">
+                                <span class="px-2 py-1 bg-blue-500/15 border border-blue-500/30 text-blue-400 text-xs rounded font-bold uppercase tracking-wider">Verified 0.144.6</span>
+                                <span>Codex CLI Integration</span>
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Codex uses TOML configurations to describe specialist agents. Multi-agent processing is managed from the root context using custom directives declared in `AGENTS.md`.
+                            </p>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-blue-400"></i>
+                                    <span>TOML agents stored inside <code class="text-blue-300 text-xs bg-blue-950/40 px-1 py-0.5 rounded font-mono">~/.codex/agents/</code></span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-blue-400"></i>
+                                    <span>User-level skills stored flat inside <code class="text-blue-300 text-xs bg-blue-950/40 px-1 py-0.5 rounded font-mono">~/.agents/skills/</code></span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-blue-400"></i>
+                                    <span>Orchestration routing merged into <code class="text-blue-300 text-xs bg-blue-950/40 px-1 py-0.5 rounded font-mono">~/.codex/AGENTS.md</code></span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-blue-400"></i>
+                                    <span>Karpathy guidelines (Always-On) merged into the same <code class="text-blue-300 text-xs bg-blue-950/40 px-1 py-0.5 rounded font-mono">AGENTS.md</code></span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="rounded-xl overflow-hidden bg-slate-950/80 border border-white/5 font-mono text-xs text-slate-300">
+                            <div class="bg-slate-900 px-4 py-2 flex items-center justify-between border-b border-white/5">
+                                <div class="flex gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                                </div>
+                                <span class="text-slate-500 font-semibold">codex-install.sh</span>
+                            </div>
+                            <div class="p-4 space-y-2 overflow-x-auto">
+                                <p class="text-slate-500"># Run the Codex specific installer</p>
+                                <p class="text-blue-400 font-semibold">./install/install-codex.sh --install-agents</p>
+                                <p class="text-slate-400 mt-4"># Generates TOML from Markdown source-of-truth using:</p>
+                                <p class="text-slate-400">python3 install/generate-agents.py --platform codex</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GEMINI TAB CONTENT -->
+                <div id="content-gemini" class="tab-content hidden space-y-6">
+                    <div class="grid md:grid-cols-2 gap-8 items-start">
+                        <div class="space-y-4">
+                            <h3 class="text-2xl font-bold text-white flex items-center gap-2">
+                                <span class="px-2 py-1 bg-violet-500/15 border border-violet-500/30 text-violet-400 text-xs rounded font-bold uppercase tracking-wider">Verified 0.51.0</span>
+                                <span>Gemini CLI / Antigravity</span>
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Gemini handles agents through clean Markdown files. Triggering specialists is done by explicitly addressing them using `@&lt;agent-name&gt;` in prompts.
+                            </p>
+                            <ul class="space-y-2 text-sm text-slate-300">
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-violet-400"></i>
+                                    <span>Markdown agents stored in <code class="text-violet-300 text-xs bg-violet-950/40 px-1 py-0.5 rounded font-mono">~/.gemini/agents/</code></span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-violet-400"></i>
+                                    <span>Skills stored flat at <code class="text-violet-300 text-xs bg-violet-950/40 px-1 py-0.5 rounded font-mono">~/.gemini/skills/</code></span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-violet-400"></i>
+                                    <span>Root steering rules appended to <code class="text-violet-300 text-xs bg-violet-950/40 px-1 py-0.5 rounded font-mono">~/.gemini/GEMINI.md</code></span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-violet-400"></i>
+                                    <span>Karpathy guidelines (Always-On) merged into the same <code class="text-violet-300 text-xs bg-violet-950/40 px-1 py-0.5 rounded font-mono">GEMINI.md</code></span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="rounded-xl overflow-hidden bg-slate-950/80 border border-white/5 font-mono text-xs text-slate-300">
+                            <div class="bg-slate-900 px-4 py-2 flex items-center justify-between border-b border-white/5">
+                                <div class="flex gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                                </div>
+                                <span class="text-slate-500 font-semibold">gemini-install.sh</span>
+                            </div>
+                            <div class="p-4 space-y-2 overflow-x-auto">
+                                <p class="text-slate-500"># Run the Gemini installer</p>
+                                <p class="text-violet-400 font-semibold">./install/install-gemini.sh --install-agents</p>
+                                <p class="text-slate-400 mt-4"># Headless setup requires setting context authorization:</p>
+                                <p class="text-slate-400">export GEMINI_CLI_TRUST_WORKSPACE=true</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Central Installer Box -->
+            <div class="p-6 md:p-8 bg-slate-950/50 border-t border-white/5">
+                <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                        <h4 class="text-base font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-gears text-cyber-400"></i>
+                            <span>Centralized Automated Dispatcher</span>
+                        </h4>
+                        <p class="text-slate-400 text-sm mt-1">One script to detect all available platforms and auto-install skills, agents, and steering instructions safely.</p>
+                    </div>
+                    <div class="w-full md:w-auto font-mono text-xs text-slate-300 bg-slate-950 border border-white/5 rounded-lg p-3 flex items-center justify-between gap-4">
+                        <span class="text-cyber-400">./install/install.sh</span>
+                        <button onclick="navigator.clipboard.writeText('./install/install.sh')" class="p-1 hover:text-white transition-colors">
+                            <i class="fa-solid fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vendor & Compiled Tools Cards -->
+        <div class="grid md:grid-cols-2 gap-8 mt-12">
+            <!-- Card 1 -->
+            <div class="glass-panel p-6 rounded-2xl border-white/5">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="h-10 w-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+                        <i class="fa-solid fa-cubes"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-bold text-white">Full Local Plugins (Vendor)</h4>
+                        <span class="text-xs text-slate-500 font-semibold uppercase">Zero external network dependency</span>
+                    </div>
+                </div>
+                <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                    Installs full, uncompromised clones of <code class="text-cyan-300">Superpowers</code>, <code class="text-cyan-300">Ponytail</code>, and <code class="text-cyan-300">Obsidian Second Brain</code> right from your local vendor directory. 
+                </p>
+                <div class="font-mono text-[11px] text-slate-300 bg-slate-950/80 p-3 rounded-lg border border-white/5">
+                    <span class="text-cyan-400">./install/install-external.sh</span>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="glass-panel p-6 rounded-2xl border-white/5">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="h-10 w-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+                        <i class="fa-solid fa-terminal"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-bold text-white">Compiled Target Binaries</h4>
+                        <span class="text-xs text-slate-500 font-semibold uppercase">Requires internet during execution</span>
+                    </div>
+                </div>
+                <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                    Pulls specific, system-compiled platform execution files such as <code class="text-purple-300">CodeGraph</code> and <code class="text-purple-300">Graphify</code> utilizing their official distribution networks.
+                </p>
+                <div class="font-mono text-[11px] text-slate-300 bg-slate-950/80 p-3 rounded-lg border border-white/5">
+                    <span class="text-purple-400">./install/install-compiled-tools.sh</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Explorer -->
+    <section id="skills" class="py-20 px-6 md:px-12 max-w-6xl mx-auto border-t border-white/5">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">64+ Elite Curated Skills</h2>
+            <p class="text-slate-400 mt-3 max-w-xl mx-auto mb-6">Explore the five elite open-source libraries that compose our high-performance skills ecosystem.</p>
+            <a href="./docs/SKILLS_DICTIONARY.md" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-semibold hover:bg-cyan-500/20 transition-all">
+                <i class="fa-solid fa-book-open"></i>
+                <span>เปิดอ่านสารบัญคำอธิบายทักษะย่อยทั้ง 64 ตัวโดยละเอียด (SKILLS_DICTIONARY.md)</span>
+            </a>
+        </div>
+
+    <!-- Skills Explorer Section with Searchable Dashboard -->
+    <section id="skills" class="py-20 px-6 md:px-12 max-w-6xl mx-auto border-t border-white/5">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">64+ Elite Curated Skills</h2>
+            <p class="text-slate-400 mt-3 max-w-xl mx-auto mb-6">Explore the full catalog of individual sub-skills and specialist agents. Use the interactive dashboard below to search and filter through the entire ecosystem.</p>
+            <a href="./docs/SKILLS_DICTIONARY.md" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-semibold hover:bg-cyan-500/20 transition-all">
+                <i class="fa-solid fa-book-open"></i>
+                <span>เปิดอ่านสารบัญคำอธิบายทักษะย่อยภาษาไทยโดยละเอียด (SKILLS_DICTIONARY.md)</span>
+            </a>
+        </div>
+
+        <!-- Searchable Skills Dashboard Grid -->
+        <div class="glass-panel rounded-3xl border-white/5 overflow-hidden shadow-2xl grid md:grid-cols-4 min-h-[550px]">
+            
+            <!-- Left Sidebar Categories -->
+            <div class="border-r border-white/5 bg-slate-950/40 p-4 space-y-2 flex flex-col md:block overflow-x-auto md:overflow-x-visible">
+                <div class="text-xs uppercase tracking-wider text-slate-500 font-bold px-3 py-2 hidden md:block">Collections</div>
+                
+                <button onclick="selectSkillCategory('9arm')" id="btn-cat-9arm" class="w-full text-left py-3 px-4 rounded-xl flex items-center justify-between hover:bg-white/5 transition-all text-cyan-400 bg-cyan-500/10 font-bold border border-cyan-500/20">
+                    <span class="flex items-center gap-2.5">
+                        <span class="h-2.5 id-indicator w-2.5 rounded-full bg-cyan-400"></span>
+                        <span>9arm Skills</span>
+                    </span>
+                    <span class="text-xs bg-cyan-950/60 text-cyan-400 px-2 py-0.5 rounded font-bold">6</span>
+                </button>
+
+                <button onclick="selectSkillCategory('karpathy')" id="btn-cat-karpathy" class="w-full text-left py-3 px-4 rounded-xl flex items-center justify-between hover:bg-white/5 transition-all text-slate-400 font-medium">
+                    <span class="flex items-center gap-2.5">
+                        <span class="h-2.5 id-indicator w-2.5 rounded-full bg-slate-500"></span>
+                        <span>Karpathy Rules</span>
+                    </span>
+                    <span class="text-xs bg-slate-900/60 text-slate-400 px-2 py-0.5 rounded font-bold">1</span>
+                </button>
+
+                <button onclick="selectSkillCategory('loop')" id="btn-cat-loop" class="w-full text-left py-3 px-4 rounded-xl flex items-center justify-between hover:bg-white/5 transition-all text-slate-400 font-medium">
+                    <span class="flex items-center gap-2.5">
+                        <span class="h-2.5 id-indicator w-2.5 rounded-full bg-slate-500"></span>
+                        <span>Loop Engineering</span>
+                    </span>
+                    <span class="text-xs bg-slate-900/60 text-slate-400 px-2 py-0.5 rounded font-bold">5</span>
+                </button>
+
+                <button onclick="selectSkillCategory('superpowers')" id="btn-cat-superpowers" class="w-full text-left py-3 px-4 rounded-xl flex items-center justify-between hover:bg-white/5 transition-all text-slate-400 font-medium">
+                    <span class="flex items-center gap-2.5">
+                        <span class="h-2.5 id-indicator w-2.5 rounded-full bg-slate-500"></span>
+                        <span>Superpowers</span>
+                    </span>
+                    <span class="text-xs bg-slate-900/60 text-slate-400 px-2 py-0.5 rounded font-bold">14</span>
+                </button>
+
+                <button onclick="selectSkillCategory('mattpocock')" id="btn-cat-mattpocock" class="w-full text-left py-3 px-4 rounded-xl flex items-center justify-between hover:bg-white/5 transition-all text-slate-400 font-medium">
+                    <span class="flex items-center gap-2.5">
+                        <span class="h-2.5 id-indicator w-2.5 rounded-full bg-slate-500"></span>
+                        <span>Matt Pocock</span>
+                    </span>
+                    <span class="text-xs bg-slate-900/60 text-slate-400 px-2 py-0.5 rounded font-bold">38</span>
+                </button>
+
+                <div class="h-px bg-white/5 my-4 hidden md:block"></div>
+                <div class="text-xs uppercase tracking-wider text-slate-500 font-bold px-3 py-2 hidden md:block">Custom Rosters</div>
+
+                <button onclick="selectSkillCategory('agents')" id="btn-cat-agents" class="w-full text-left py-3 px-4 rounded-xl flex items-center justify-between hover:bg-white/5 transition-all text-slate-400 font-medium">
+                    <span class="flex items-center gap-2.5">
+                        <span class="h-2.5 id-indicator w-2.5 rounded-full bg-slate-500"></span>
+                        <span>AI Specialists</span>
+                    </span>
+                    <span class="text-xs bg-slate-900/60 text-slate-400 px-2 py-0.5 rounded font-bold">10</span>
+                </button>
+            </div>
+
+            <!-- Right Panel Content Explorer -->
+            <div class="md:col-span-3 p-6 md:p-8 flex flex-col justify-between">
+                
+                <!-- Category Meta & Search Box -->
+                <div class="space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div>
+                            <h3 id="cat-title" class="text-xl font-bold text-white">9arm Skills (ทักษะความรัดกุมในการดีบั๊ก)</h3>
+                            <p id="cat-desc" class="text-xs text-slate-500 font-semibold mt-1">คอลเลกชันทักษะสไตล์พี่เก้า Thananon เพื่อเสริมระเบียบการทำงาน</p>
+                        </div>
+                        
+                        <!-- Real-time search box -->
+                        <div class="relative min-w-[200px]">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500"></i>
+                            <input onkeyup="filterSubSkills()" id="skill-search" type="text" placeholder="ค้นหาทักษะย่อย... (e.g. tdd, bug)" class="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-950 border border-white/10 text-slate-300 text-xs font-semibold focus:outline-none focus:border-cyber-500 focus:ring-1 focus:ring-cyber-500 transition-colors">
+                        </div>
+                    </div>
+
+                    <!-- Rendered Skills List -->
+                    <div id="subskills-list" class="grid sm:grid-cols-2 gap-4 max-h-[380px] overflow-y-auto pr-1">
+                        <!-- Dynamic JavaScript rendering -->
+                    </div>
+                </div>
+
+                <!-- Footer details inside search -->
+                <div class="mt-6 border-t border-white/5 pt-4 text-xs text-slate-500 flex justify-between items-center">
+                    <span>* เรียกใช้ความสามารถย่อยได้ทันทีโดยพิมพ์สเปกในเชลล์ CLI</span>
+                    <span id="skill-total-indicator" class="font-bold text-cyber-400">แสดงผล 6 ทักษะ</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript Data and Controller injection in footer script -->
+
+    <!-- Directory Structure Map -->
+    <section id="structure" class="py-20 px-6 md:px-12 max-w-4xl mx-auto border-t border-white/5">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">Repository Architecture Map</h2>
+            <p class="text-slate-400 mt-3 max-w-xl mx-auto">Explore how files are organized and distributed within the project filesystem.</p>
+        </div>
+
+        <div class="glass-panel p-6 md:p-8 rounded-3xl border-white/5 font-mono text-xs md:text-sm text-slate-300 space-y-2 overflow-x-auto">
+            <div class="text-cyan-400 font-bold">pasitc-ai-agents-skills/</div>
+            <div class="pl-4 text-slate-500">├── .gitignore</div>
+            <div class="pl-4 text-slate-400">├── CREDITS.md <span class="text-slate-600 text-xs">// Complete licensing & credits mapping</span></div>
+            <div class="pl-4 text-slate-400">├── LICENSE <span class="text-slate-600 text-xs">// MIT License</span></div>
+            <div class="pl-4 text-slate-400">├── README.md <span class="text-slate-600 text-xs">// Portal details & GitHub representation</span></div>
+            
+            <div class="pl-4 text-purple-400 font-bold">├── agents/ <span class="text-slate-600 text-xs font-normal">// Specialist Roster Profiles</span></div>
+            <div class="pl-8 text-slate-400">├── project-agents/ <span class="text-slate-500">// Scope-restricted project profiles (Markdown)</span></div>
+            <div class="pl-8 text-slate-400">├── user-agents/ <span class="text-slate-500">// Global user-restricted specialist profiles</span></div>
+            <div class="pl-8 text-slate-400">├── kiro-agents/ <span class="text-slate-500">// Classic JSON rosters for Kiro CLI</span></div>
+            <div class="pl-8 text-slate-400">├── codex-agents/ <span class="text-slate-500">// TOML formats generated from Claude sources</span></div>
+            <div class="pl-8 text-slate-400">└── gemini-agents/ <span class="text-slate-500">// Markdown profiles for Gemini / Antigravity</span></div>
+
+            <div class="pl-4 text-emerald-400 font-bold">├── skills/ <span class="text-slate-600 text-xs font-normal">// 64+ Specialized Action Skills</span></div>
+            <div class="pl-8 text-slate-400">├── 9arm-skills/</div>
+            <div class="pl-8 text-slate-400">├── mattpocock-skills/</div>
+            <div class="pl-8 text-slate-400">├── andrej-karpathy-guidelines/</div>
+            <div class="pl-8 text-slate-400">├── loop-engineering/</div>
+            <div class="pl-8 text-slate-400">└── superpowers/</div>
+
+            <div class="pl-4 text-amber-400 font-bold">├── docs/ <span class="text-slate-600 text-xs font-normal">// System Governance & Canonical Workflows</span></div>
+            <div class="pl-8 text-slate-400">├── GLOBAL_RULE.md <span class="text-slate-500">// System-wide behavioral steering</span></div>
+            <div class="pl-8 text-slate-400">├── WORKFLOW.md <span class="text-slate-500">// The canonical 10-phase AIDLC-lite guide</span></div>
+            <div class="pl-8 text-slate-400">├── TEAM_LEADER.md <span class="text-slate-500">// Steering specifications for the Team Leader model</span></div>
+            <div class="pl-8 text-slate-400">└── templates/ <span class="text-slate-500">// Standardized SDLC item templates</span></div>
+
+            <div class="pl-4 text-pink-400 font-bold">├── install/ <span class="text-slate-600 text-xs font-normal">// Automated Shell Setup & Code Generator Engines</span></div>
+            <div class="pl-8 text-slate-400">├── install.sh <span class="text-slate-500">// Automated multi-platform dispatcher</span></div>
+            <div class="pl-8 text-slate-400">├── install-claude.sh / install-kiro.sh / install-codex.sh / install-gemini.sh</div>
+            <div class="pl-8 text-slate-400">├── install-external.sh <span class="text-slate-500">// Local vendor packages installer</span></div>
+            <div class="pl-8 text-slate-400">└── generate-agents.py <span class="text-slate-500">// Roster conversion engine (Markdown to TOML/JSON)</span></div>
+
+            <div class="pl-4 text-blue-400 font-bold">└── vendor/ <span class="text-slate-600 text-xs font-normal">// Full Local Extensions (Offline Copies)</span></div>
+            <div class="pl-8 text-slate-400">├── superpowers/</div>
+            <div class="pl-8 text-slate-400">├── ponytail/</div>
+            <div class="pl-8 text-slate-400">└── obsidian-second-brain/</div>
+        </div>
+    </section>
+
+    <!-- Footer with credits and licensing -->
+    <footer class="border-t border-white/5 bg-slate-950 py-12 px-6 md:px-12 text-center text-xs text-slate-500 space-y-4">
+        <div class="flex items-center justify-center gap-2 text-slate-400 font-bold text-sm mb-4">
+            <i class="fa-solid fa-copyright"></i>
+            <span>2026 pasitc-ai-agents-skills</span>
+        </div>
+        <p class="max-w-xl mx-auto leading-relaxed">
+            All original code, documentation, and automated installation engines are protected under the MIT License. Embedded sub-packages, skills collections, and specific plugin vendor binaries maintain their respective original licenses. For deep credits and reference links, view the <a href="CREDITS.md" class="text-cyber-400 hover:underline">CREDITS.md</a> file.
+        </p>
+    </footer>
+
+    <!-- Interactive script for tabs switching and skills explorer -->
+    <script>
+        // Tab Switching for Installation Guide
+        function switchTab(platform) {
+            const tabs = ['kiro', 'claude', 'codex', 'gemini'];
+            tabs.forEach(tab => {
+                const button = document.getElementById(`tab-${tab}`);
+                const content = document.getElementById(`content-${tab}`);
+                if (tab === platform) {
+                    button.classList.add('border-cyber-500', 'text-white');
+                    button.classList.remove('border-transparent', 'text-slate-400');
+                    content.classList.remove('hidden');
+                    content.classList.add('block');
+                } else {
+                    button.classList.add('border-transparent', 'text-slate-400');
+                    button.classList.remove('border-cyber-500', 'text-white');
+                    content.classList.remove('block');
+                    content.classList.add('hidden');
+                }
+            });
+        }
+
+        // Real-time Skills Database with Execution Mechanisms & Triggers
+        const SKILLS_DATA = {
+            '9arm': {
+                title: '9arm Skills (ทักษะความรัดกุมในการดีบั๊ก)',
+                desc: 'คอลเลกชันทักษะสไตล์พี่เก้า Thanon เพื่อเสริมความรัดกุม มีสติ และระบบการดีบั๊กที่ไม่เดาสุ่ม',
+                colorClass: 'text-cyan-400',
+                indicatorClass: 'bg-cyan-400',
+                btnBorderClass: 'border-cyan-500/20 bg-cyan-500/10 text-cyan-400',
+                items: [
+                    { name: 'debug-mantra', desc: 'หยุดคิด ควบคุมสติ รวบรวมข้อมูลจริง (Empirical Data) แทนการเดาสุ่มแก้ไขเมื่อรันเทสพัง', mechanism: 'Always-On', trigger: 'รันอัตโนมัติเมื่อเทสพัง' },
+                    { name: 'post-mortem', desc: 'เขียนวิเคราะห์รายงานปัญหาระบบล่ม (Root Cause) และเสนอแผนแก้ไขป้องกันถาวร', mechanism: 'Slash Command', trigger: '/skill post-mortem' },
+                    { name: 'qwen-agent', desc: 'แนวทางการนำโมเดลภาษาขนาดใหญ่ตระกูล Qwen เข้ามาเป็นสแกนเนอร์สอดส่องและทบทวน', mechanism: 'Workflow-Active', trigger: 'รันช่วง QA อัตโนมัติ' },
+                    { name: 'scrutinize', desc: 'เพ่งเล็งโค้ดและตรวจทานอย่างละเอียดทีละบรรทัด ค้นหา Edge Cases และจุดเสี่ยงเชิงตรรกะทั้งหมด', mechanism: 'Slash Command', trigger: '/skill scrutinize [ไฟล์]' },
+                    { name: 'management-talk', desc: 'แปลงและสรุปรายละเอียดงานพัฒนาทางเทคนิคที่ซับซ้อนให้กลายเป็นรายงานสถานะกระชับสำหรับผู้บริหาร', mechanism: 'Slash Command', trigger: '/skill management-talk' },
+                    { name: 'qwenchance', desc: 'สรุปสมมติฐานและจำลองผลกระทบเมื่อต้องออกแบบโครงสร้างระบบภายใต้ข้อจำกัด', mechanism: 'Slash Command', trigger: '/skill qwenchance' }
+                ]
+            },
+            'karpathy': {
+                title: 'Andrej Karpathy Guidelines (กฎเหล็ก AI)',
+                desc: 'กฎทองการตรวจทานความจริงเชิงประจักษ์ มุ่งเน้นการจำกัดพฤติกรรม LLM เพื่อขจัดโค้ดมโนเดาสุ่ม',
+                colorClass: 'text-emerald-400',
+                indicatorClass: 'bg-emerald-400',
+                btnBorderClass: 'border-emerald-500/20 bg-emerald-500/10 text-emerald-400',
+                items: [
+                    { name: 'andrej-karpathy-guidelines', desc: 'กฎเหล็ก 4 ข้อ: ต้องรันตรวจสอบจริง, ห้ามเดาสเปก, ทำงานทีละส่วนคงสเปก, ปฏิเสธงานคลุมเครือเพื่อถามมนุษย์', mechanism: 'Always-On', trigger: 'รันเบื้องหลังตลอดเวลา' }
+                ]
+            },
+            'loop': {
+                title: 'Loop Engineering (วิศวกรรมควบคุมลูป)',
+                desc: 'กลุ่มทักษะสกัดกั้นการสนทนาซ้ำซาก วิ่งวนแก้บั๊กเดิมๆ และสลายพฤติกรรมการล้างผลาญโทเคนของ AI',
+                colorClass: 'text-amber-400',
+                indicatorClass: 'bg-amber-400',
+                btnBorderClass: 'border-amber-500/20 bg-amber-500/10 text-amber-400',
+                items: [
+                    { name: 'loop-budget', desc: 'จำกัดปริมาณโทเคนและจำนวนตาโต้ตอบสูงสุดในระบบ เพื่อสกัดกั้น AI ใช้ทรัพยากรเกินเป้าหมาย', mechanism: 'Always-On', trigger: 'รันเบื้องหลังตลอดเวลา' },
+                    { name: 'loop-constraints', desc: 'จำกัดเวลาและขอบเขตจำนวนไฟล์ที่อนุญาต เพื่อไม่ให้เอเจนท์แก้ไขกระจัดกระจายหลงสมาธิ', mechanism: 'Always-On', trigger: 'รันเบื้องหลังตลอดเวลา' },
+                    { name: 'loop-triage', desc: 'สแกนตรวจสอบสถานะการทำงานแก้บั๊กของเครื่อง หากติดขัดจะเข้าสเต็ปจัดระเบียบหาทิศทางอื่นแทน', mechanism: 'Workflow-Active', trigger: 'รันเมื่อแก้บั๊กซ้ำซาก' },
+                    { name: 'loop-verifier', desc: 'สแกนจับลูปแก้โค้ดวนซ้ำ หากพบว่า AI แก้งานซ้ำซากด้วยวิธีเดิมๆ จะระงับรันแล้วเด้งขอความช่วยเหลือจากมนุษย์ทันที', mechanism: 'Always-On', trigger: 'รันเบื้องหลังตลอดเวลา' },
+                    { name: 'minimal-fix', desc: 'เลือกหนทางแก้ไขโค้ดขอบเขตที่เล็กที่สุด ป้องกันการแก้เลอะเทอะนอกขอบเขตจนระบบโดยรวมพังพินาศต่อเนื่อง', mechanism: 'Workflow-Active', trigger: 'อัญเชิญเมื่อซ่อมแซม' }
+                ]
+            },
+            'superpowers': {
+                title: 'Superpowers (กระบวนการพัฒนาระดับซูเปอร์พาวเวอร์)',
+                desc: 'เทคนิคระบบอัตโนมัติในการช่วยวางแผนพัฒนา จัดระเบียบการจัดส่ง และวิเคราะห์สถาปัตยกรรมระดับซูเปอร์พาวเวอร์',
+                colorClass: 'text-pink-400',
+                indicatorClass: 'bg-pink-400',
+                btnBorderClass: 'border-pink-500/20 bg-pink-500/10 text-pink-400',
+                items: [
+                    { name: 'brainstorming', desc: 'ช่วยระดมสมอง แตกฟังก์ชัน และร่างสเปกความต้องการความสอดคล้องกับคู่คิดจำลอง', mechanism: 'Slash Command', trigger: '/skill brainstorming' },
+                    { name: 'dispatching-parallel-agents', desc: 'ซอยงานย่อยที่เป็นอิสระออกจากกัน สั่งให้ Specialist Sub-agents ทำงานขนานเพื่อความรวดเร็ว', mechanism: 'Workflow-Active', trigger: 'เรียกใช้โดยเอเจนท์หลัก' },
+                    { name: 'executing-plans', desc: 'คุมการทำงานเขียนโค้ดตามแผนงานที่ร่างย่อยไว้เป็นขั้นๆ อย่างเคร่งครัดและมี Traceability เช็คความถูกต้องเสมอ', mechanism: 'Workflow-Active', trigger: 'รันอัตโนมัติในเฟส 5' },
+                    { name: 'finishing-a-development-branch', desc: 'เวิร์กโฟลว์รันบิวด์ ตรวจไทป์ และรันเทสรวมอย่างสมบูรณ์แบบเพื่อตรวจสอบความเสถียรก่อนส่งมอบปิด Branch', mechanism: 'Slash Command', trigger: '/skill finishing-a-branch' },
+                    { name: 'receiving-code-review', desc: 'รับข้อเสนอแนะจากการรีวิวแล้วประยุกต์แก้ไขจุดที่ตรวจพบในโค้ดอย่างปลอดภัยปราศจากผลข้างเคียง', mechanism: 'Workflow-Active', trigger: 'รันเมื่อ Gate รีวิวล้มเหลว' },
+                    { name: 'requesting-code-review', desc: 'ส่งงานที่เขียนเสร็จสมบูรณ์เข้าระบบสุ่มตรวจตามเกณฑ์มาตรฐาน และกฎเกณฑ์ Clean Code ก่อนเมิร์จ', mechanism: 'Workflow-Active', trigger: 'รันอัตโนมัติก่อนเปิด Gate' },
+                    { name: 'subagent-driven-development', desc: 'สั่งจ่ายฟังก์ชันหรือสเปกย่อยๆ มอบหมายลงไปที่ Specialist Sub-agents เพื่อความแม่นยำรายฟังก์ชัน', mechanism: 'Workflow-Active', trigger: 'เรียกโดยเอเจนท์หลักในเฟส 5' },
+                    { name: 'systematic-debugging', desc: 'ดีบั๊กอย่างเป็นทฤษฎี: ตั้งสมมติฐาน -> ทดลองหารอยรั่วจริง -> ยืนยันพยานหลักฐานหลังแก้ไขเสร็จ', mechanism: 'Slash Command', trigger: '/skill systematic-debugging' },
+                    { name: 'test-driven-development', desc: 'บังคับเขียนและทดสอบ Unit Test ให้ผ่านความถูกต้องก่อนเริ่มแก้หรือเขียนตัวโค้ดแอปหลัก', mechanism: 'Workflow-Active', trigger: '/skill test-driven-development' },
+                    { name: 'using-git-worktrees', desc: 'ใช้ Git Worktree สลับสาขางานแก้โค้ดไป Directory พิเศษ ช่วยให้เอเจนท์ทำงานขนานกันโดยไม่ชนกัน', mechanism: 'Slash Command', trigger: '/skill using-git-worktrees' },
+                    { name: 'using-superpowers', desc: 'เปิดเชื่อมประสานงานและดึงขุมพลังเครื่องมือแวดล้อมมาใช้อย่างถูกต้องบน OS ปัจจุบัน', mechanism: 'Always-On', trigger: 'รันเบื้องหลังตลอดเวลา' },
+                    { name: 'verification-before-completion', desc: 'ด่านตรวจเช็คพ้อยท์สแกนไทป์, ลินท์, และสมาธิไวยากรณ์รอบสุดท้าย ห้ามตอบเสร็จหากผลเทสรวมไม่เรียบร้อย', mechanism: 'Workflow-Active', trigger: 'รันอัตโนมัติในเฟส 7' },
+                    { name: 'writing-plans', desc: 'เขียนแผนปฏิบัติงานขนาดย่อยเป็นสเต็ปๆ พร้อมทำตารางเช็คสเปกเชื่อม Requirements เข้ากับระบบตรวจสอบ', mechanism: 'Workflow-Active', trigger: 'รันอัตโนมัติในเฟส 4' },
+                    { name: 'writing-skills', desc: 'การดีไซน์และเขียนระบบความสามารถย่อยใหม่ๆ เพื่อเข้ามาอัปเดตบรรจุในคู่มือ SKILL.md', mechanism: 'Slash Command', trigger: '/skill writing-skills' }
+                ]
+            },
+            'mattpocock': {
+                title: 'Matt Pocock TypeScript & Engineering Core',
+                desc: 'วิศวกรรมโครงสร้าง TypeScript และการจัดส่งแอปพลิเคชันระดับองค์กร ตรรกะไทป์ที่แกร่ง มั่นคง และได้มาตรฐาน',
+                colorClass: 'text-purple-400',
+                indicatorClass: 'bg-purple-400',
+                btnBorderClass: 'border-purple-500/20 bg-purple-500/10 text-purple-400',
+                items: [
+                    { name: 'ask-matt', desc: 'ตอบคำถามและสืบค้นทริคการประกาศชนิดประเภทตัวแปรขั้นสูง (Advanced Typing Generics)', mechanism: 'Slash Command', trigger: '/skill ask-matt [คำถาม]' },
+                    { name: 'code-review', desc: 'ตรวจทานรีวิวความเข้มแข็งของไทป์ สลัดการประกาศ types แบบมั่วๆ และคัดกรองการใช้ any ออกเพื่อความปลอดภัย', mechanism: 'Workflow-Active', trigger: '/skill code-review' },
+                    { name: 'codebase-design', desc: 'สเก็ตช์ออกแบบดีไซน์โครงสร้างระบบใหม่เป็น 2 ทางเลือก (Design It Twice) เปรียบเทียบข้อดีข้อเสียอย่างเข้มข้น', mechanism: 'Workflow-Active', trigger: '/skill codebase-design' },
+                    { name: 'diagnosing-bugs', desc: 'แกะวิถีบั๊กในสเปก TypeScript และจำลองพฤติกรรมเทสให้พังเชิงลึกเพื่อการแก้ไขตรงจุด', mechanism: 'Workflow-Active', trigger: '/skill diagnosing-bugs' },
+                    { name: 'domain-modeling', desc: 'สถาปนาโครงร่างแบบจำลองข้อมูลตามหลัก Domain-Driven Design และบันทึกข้อสรุปทางสถาปัตยกรรม ADR', mechanism: 'Workflow-Active', trigger: '/skill domain-modeling' },
+                    { name: 'grill-with-docs', desc: 'สืบเค้นคู่มือระบบต้นทางอย่างเข้มงวดเพื่อนำมาสร้างสเปกโค้ด ห้ามเดาวิธีทำงานเอาเองเด็ดขาด', mechanism: 'Always-On', trigger: 'รันเบื้องหลังตลอดเวลา' },
+                    { name: 'implement', desc: 'การลงมือเขียนโค้ด TS ที่สะอาด มั่นคง เป็นระเบียบและตรงตามความคุ้มค่าบริบท', mechanism: 'Workflow-Active', trigger: 'รันอัตโนมัติในเฟส 5' },
+                    { name: 'improve-codebase-architecture', desc: 'สแกนหาข้อบกพร่องทางสถาปัตยกรรมใน codebase พร้อมทำแผนและคู่มือแก้ไขระยะยาว', mechanism: 'Slash Command', trigger: '/skill improve-architecture' },
+                    { name: 'prototype', desc: 'เขียนแอปต้นแบบเพื่อจำลองการทำลอจิกจริงอย่างรวดเร็ว (Functional Prototype) ควบคู่กับจำลองสเปก UI', mechanism: 'Slash Command', trigger: '/skill prototype [สเปก]' },
+                    { name: 'research', desc: 'สำรวจ ค้นคว้าสืบหาความเชื่อมโยง คอนเวนชัน และวิธีการเรียกใช้โมดูลในระบบเก่า', mechanism: 'Workflow-Active', trigger: 'รันอัตโนมัติในเฟส 1' },
+                    { name: 'resolving-merge-conflicts', desc: 'บริหารและแก้ข้อพิพาทคอมมิตทับซ้อน (Merge Conflict) บนกิ่งงาน Git อย่างรอดพ้นความเสียหาย', mechanism: 'Workflow-Active', trigger: 'เรียกเมื่อมีสัญญลักษณ์ขัดแย้ง' },
+                    { name: 'setup-matt-pocock-skills', desc: 'ปรับแต่งระบบนิเวศของระบบและเชื่อมต่อการส่งสถิติใบงานเข้าระบบแทร็กกิ้งของทีม', mechanism: 'Always-On', trigger: 'รันเบื้องหลังสแตนบายด์' },
+                    { name: 'tdd', desc: 'วนลูปเขียนเทสย่อย ตรวจเช็คเคสครอบคลุม และเขียนจำลองตัวแปร (Mocking) สไตล์ Matt Pocock', mechanism: 'Workflow-Active', trigger: '/skill tdd' },
+                    { name: 'to-issues', desc: 'ย่อยแผนพัฒนาภาพรวมออกเป็นใบงาน (Issues) สั้นๆ เพื่อให้ AI สามารถโฟกัสรันทีละจุดอย่างได้เปรียบ', mechanism: 'Slash Command', trigger: '/skill to-issues' },
+                    { name: 'to-prd', desc: 'สรุปความต้องการที่กระจัดกระจายของมนุษย์พ่นออกมาเป็นสเปกเอกสาร PRD มาตรฐานฟังก์ชัน', mechanism: 'Slash Command', trigger: '/skill to-prd' },
+                    { name: 'triage', desc: 'ประเมินและคัดกรองงานที่อยู่นอกเป้าหมาย (Out of Scope) เพื่อควบคุมสมาธิและความคุ้มทุนของโทเคน', mechanism: 'Always-On', trigger: 'รันเบื้องหลังตลอดเวลา' },
+                    { name: 'claude-handoff', desc: 'เขียนสรุปสถานะ สัญญาณเชื่อมโยง และหลักฐานข้อเท็จจริงเพื่อส่งต่อความจำสมาธิข้าม Session ถัดไป', mechanism: 'Slash Command', trigger: '/skill handoff-chat' },
+                    { name: 'loop-me', desc: 'รันสแกนตรรกะประเภทตัวแปร TypeScript วนซ้ำเพื่อซ่อมและลบล้าง Error ไทป์ในลูปย่อย', mechanism: 'Workflow-Active', trigger: '/skill loop-me' },
+                    { name: 'wayfinder', desc: 'สืบค้นแผนผังโมดูลในระบบขนาดใหญ่ ช่วยให้ AI เดินหน้าทำงานข้ามเทคโนโลยีโดยไม่งงทิศทาง', mechanism: 'Slash Command', trigger: '/skill wayfinder' },
+                    { name: 'wizard', desc: 'ร่างตัวแปรประเภทไทป์และโครงสร้างเชื่อมไฟล์สถาปัตยกรรม TS คลาสสิกได้อย่างรวดเร็วมีพลัง', mechanism: 'Slash Command', trigger: '/skill wizard' },
+                    { name: 'writing-beats / fragments / shape', desc: 'กลุ่มความสามารถสรุป สกัด เรียบเรียงคู่มือสถาปัตยกรรมของโปรเจกต์ให้สละสลวยน่าอ่าน', mechanism: 'Slash Command', trigger: '/skill writing-beats' },
+                    { name: 'git-guardrails', desc: 'ด่านตรวจจับปะทะการทำลายคอมมิต ป้องกันการ push --force หรือทำรหัสโทเคนหลุดรอดลงใน Git', mechanism: 'Always-On', trigger: 'รันเบื้องหลังตลอดเวลา' },
+                    { name: 'migrate-to-shoehorn', desc: 'แปลงขั้วโมดูลประเภทเดิมมาเชื่อมโยงกับระบบรันเทสประเภทใหม่ของระบบ', mechanism: 'Slash Command', trigger: '/skill migrate-to-shoehorn' },
+                    { name: 'scaffold-exercises', desc: 'การสร้างโจทย์จำลองและสนามซ้อมเขียนโค้ด TypeScript เพื่อการเรียนรู้และพัฒนาสกิล', mechanism: 'Slash Command', trigger: '/skill scaffold-exercises' },
+                    { name: 'setup-pre-commit', desc: 'ตั้งค่าระบบ Hook ตรวจสอบสเปกโค้ดและลินท์ ห้ามทำการคอมมิตงานหากผลตรวจสอบพัง', mechanism: 'Always-On', trigger: 'รันเบื้องหลังตรวจสอบ' },
+                    { name: 'edit-article', desc: 'การแก้อัปเดต เรียบเรียง หรือย่นย่อบทความคู่มือทางวิชาการให้คมชัดเข้าสเปก', mechanism: 'Slash Command', trigger: '/skill edit-article' },
+                    { name: 'obsidian-vault', desc: 'การสรุปสาระสำคัญเชิงสถาปัตยกรรมบันทึกเป็นคู่มือเพื่อเชื่อมโยงไปที่ Obsidian Second Brain', mechanism: 'Slash Command', trigger: '/skill obsidian-vault' },
+                    { name: 'grilling', desc: 'ความสามารถในการตั้งคำถามขยี้จุดบกพร่องสถาปัตยกรรมโค้ด เพื่อหาทางอุดรอยรั่วก่อนเริ่มเขียนจริง', mechanism: 'Slash Command', trigger: '/skill grilling' },
+                    { name: 'handoff', desc: 'ร่างสรุปหลักฐาน รายงานสถานะ และวิธีการเข้าทดสอบส่งท้ายงานฟีเจอร์อย่างเรียบร้อย', mechanism: 'Slash Command', trigger: '/skill handoff' },
+                    { name: 'teach', desc: 'เรียบเรียงความรู้เป็นบทเรียน มอบหมายภารกิจ และตรวจสอบเก็บสถิติประวัติการศึกษาทีม', mechanism: 'Slash Command', trigger: '/skill teach' },
+                    { name: 'writing-great-skills', desc: 'ดีไซน์และเขียนระบบความสามารถย่อยใหม่ๆ เข้ามาสะสมเสริมทัพคลังปัญญาตามรูปแบบมาตรฐาน', mechanism: 'Slash Command', trigger: '/skill writing-great-skills' }
+                ]
+            },
+            'agents': {
+                title: '10 Custom Specialist AI Agents Roster',
+                desc: 'ทีมทำเนียบเอเจนท์เฉพาะทาง 10 ตัวที่มีบทบาท หน้าที่การตรวจสอบ เกทอนุมัติ และสิทธิ์เข้าถึงต่างกัน',
+                colorClass: 'text-indigo-400',
+                indicatorClass: 'bg-indigo-400',
+                btnBorderClass: 'border-indigo-500/20 bg-indigo-500/10 text-indigo-400',
+                items: [
+                    { name: 'aidlc-lead', desc: '[Lead Orchestrator] ผู้นำขับเคลื่อนเวิร์กโฟลว์ 10 ขั้นตอน เขียนสเปก แผนงาน และคุมจ่าย Specialist Sub-agents', mechanism: 'Workflow-Active', trigger: 'เรียกอัตโนมัติผ่านเวิร์กโฟลว์' },
+                    { name: 'team-leader', desc: '[Orchestrator Observer] คุมทีม ตรวจ codebase วางแผนงาน ประเมินความเสี่ยงและสั่งงาน แต่ไม่แก้ไขไฟล์โดยพลการ', mechanism: 'Workflow-Active', trigger: 'เรียกผ่าน @team-leader' },
+                    { name: 'plan-reviewer', desc: '[Plan Auditor] ตรวจสอบความถูกต้อง ความเสถียร และความเป็นไปได้ของแผนพัฒนาโค้ด (Gate 1)', mechanism: 'Workflow-Active', trigger: 'เรียกสแกนที่ Gate 1' },
+                    { name: 'researcher', desc: '[Code Researcher] สำรวจแกะรอย codebase อ่าน API และชี้พิกัดจุดรอยต่อต่างๆ เพื่อป้อนข้อมูลจริงให้ทีม (Phase 1)', mechanism: 'Workflow-Active', trigger: 'เรียกสืบค้นข้อมูลในเฟส 1' },
+                    { name: 'security-auditor', desc: '[Security Auditor] สแกนโค้ดสถาปัตยกรรมด่านความปลอดภัย จุดที่แตะต้อง Authentication หรือ Secrets (Gate 2)', mechanism: 'Workflow-Active', trigger: 'เรียกสแกนที่ Gate 2' },
+                    { name: 'devsecops-engineer', desc: '[DevSecOps Scanner] คุมบิวด์รวม ตรวจสอบสแกนหาช่องโหว่ความเสี่ยง คีย์รหัสผ่านรั่วไหล และ Error ประเภทไทป์ (Gate 3)', mechanism: 'Workflow-Active', trigger: 'เรียกสแกนที่ Gate 3' },
+                    { name: 'test-quality-auditor', desc: '[Test Quality Auditor] ตรวจจับเทสปลอม (Fake Tests) ที่เขียนอุปโลกน์ขึ้นมาเพื่อลวงด่านระบบรันบิวด์ (Gate 4)', mechanism: 'Workflow-Active', trigger: 'เรียกสแกนที่ Gate 4' },
+                    { name: 'fullstack-engineer', desc: '[Developer Agent] พัฒนา Business Logic, API, ออกแบบโครงสร้างหลังบ้าน และสร้างคอมโพเนนต์ Component UI', mechanism: 'Workflow-Active', trigger: 'คุมงานเขียนโค้ดหลัก' },
+                    { name: 'platform-engineer', desc: '[Developer Agent] วิศวกรดูแล Docker, SQL Migrations, การตั้งค่าเน็ตเวิร์ก และระบบโครงสร้างพื้นฐาน', mechanism: 'Workflow-Active', trigger: 'คุมโครงสร้างระบบพื้นฐาน' },
+                    { name: 'test-engineer', desc: '[Developer Agent] ออกแบบและเขียนสคริปต์เคสจำลอง Unit Test, Integration และ End-to-End Test ด้วย TDD', mechanism: 'Workflow-Active', trigger: 'คุมออกแบบชุดทดสอบระบบ' }
+                ]
+            }
+        };
+
+        // Active category state
+        let activeSkillCategory = '9arm';
+
+        // Select skill category tab
+        function selectSkillCategory(cat) {
+            activeSkillCategory = cat;
+            const data = SKILLS_DATA[cat];
+
+            // Update titles & meta
+            document.getElementById('cat-title').innerText = data.title;
+            document.getElementById('cat-title').className = `text-xl font-bold ${data.colorClass}`;
+            document.getElementById('cat-desc').innerText = data.desc;
+
+            // Reset all buttons styling
+            const categories = ['9arm', 'karpathy', 'loop', 'superpowers', 'mattpocock', 'agents'];
+            categories.forEach(c => {
+                const btn = document.getElementById(`btn-cat-${c}`);
+                const indicator = btn.querySelector('.id-indicator');
+
+                if (c === cat) {
+                    btn.className = `w-full text-left py-3 px-4 rounded-xl flex items-center justify-between hover:bg-white/5 transition-all font-bold ${data.btnBorderClass}`;
+                    indicator.className = `h-2.5 id-indicator w-2.5 rounded-full ${data.indicatorClass}`;
+                } else {
+                    btn.className = `w-full text-left py-3 px-4 rounded-xl flex items-center justify-between hover:bg-white/5 transition-all text-slate-400 font-medium`;
+                    indicator.className = `h-2.5 id-indicator w-2.5 rounded-full bg-slate-500`;
+                }
+            });
+
+            // Render list of subskills
+            renderSkillsList(data.items, data.colorClass);
+        }
+
+        // Render subskills grid with custom mechanics card representation
+        function renderSkillsList(items, colorClass) {
+            const container = document.getElementById('subskills-list');
+            container.innerHTML = '';
+
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'glass-panel p-4 rounded-xl border-white/5 hover:border-white/10 transition-all flex flex-col justify-between';
+                
+                // Mechanism color indicator
+                let mechBg = 'bg-slate-900 text-slate-400';
+                if (item.mechanism === 'Slash Command') mechBg = 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20';
+                if (item.mechanism === 'Always-On') mechBg = 'bg-red-500/10 text-red-400 border border-red-500/20';
+                if (item.mechanism === 'Workflow-Active') mechBg = 'bg-purple-500/10 text-purple-400 border border-purple-500/20';
+
+                card.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="text-glow code-font text-xs font-bold ${colorClass}">${item.name}</span>
+                            <span class="text-[9px] font-bold px-2 py-0.5 rounded-full ${mechBg}">${item.mechanism}</span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed font-normal">${item.desc}</p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[10px]">
+                        <span class="text-slate-500 font-semibold">เรียกใช้:</span>
+                        <kbd class="bg-slate-950 px-2 py-1 rounded border border-white/5 text-[9px] text-slate-300 font-mono font-medium">${item.trigger}</kbd>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Update counter text
+            document.getElementById('skill-total-indicator').innerText = `แสดงผล ${items.length} รายการ`;
+            document.getElementById('skill-total-indicator').className = `font-bold ${colorClass}`;
+        }
+
+        // Real-time filter search
+        function filterSubSkills() {
+            const query = document.getElementById('skill-search').value.toLowerCase();
+            const data = SKILLS_DATA[activeSkillCategory];
+
+            // Filter array
+            const filtered = data.items.filter(item => {
+                return item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+            });
+
+            // Render filtered items
+            renderSkillsList(filtered, data.colorClass);
+        }
+
+        // Initialize default category on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            selectSkillCategory('9arm');
+        });
+    </script>
+    </body>
+    </html>
